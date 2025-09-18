@@ -1,0 +1,2 @@
+killall typst
+killall sioyek
