@@ -14,7 +14,10 @@ COMMIT_MSG="auto up $(uptime)"
 
 for repo in "${REPOS[@]}"; do
     if [ -d "$repo/.git" ]; then
-        echo "Processing $repo..."
+        echo "Processing $repo...
+
+
+		"
         cd "$repo" || continue
         git fetch
         git add .
