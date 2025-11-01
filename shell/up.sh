@@ -12,19 +12,28 @@ REPOS=(
 # Commit message
 COMMIT_MSG="auto up $(uptime)"
 
-for repo in "${REPOS[@]}"; do
+process_repo() {
+    local repo="$1"
+
     if [ -d "$repo/.git" ]; then
-        echo "Processing $repo...
-
-
-		"
-        cd "$repo" || continue
-        git fetch
-        git add .
-        git commit -m "$COMMIT_MSG"
-        git pull --rebase
-        git push
+        echo "Processing $repo..."
+        (
+            cd "$repo" || exit
+            git fetch
+            git add .
+            git commit -m "$COMMIT_MSG" >/dev/null 2>&1 || true
+            git pull --rebase
+            git push
+            echo "Done: $repo"
+        )
     else
         echo "Skipping $repo: not a git repository"
     fi
+}
+
+for repo in "${REPOS[@]}"; do
+    process_repo "$repo" &
 done
+
+wait
+echo "All repositories processed."
