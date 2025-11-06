@@ -4,7 +4,10 @@ set -euo pipefail
 PROJECT_DIR=$(find ~/projects -mindepth 1 -maxdepth 1 -type d | fzf --prompt='Select project: ')
 [ -z "$PROJECT_DIR" ] && exit 0
 
+# Sanitize session name
 SESSION_NAME=$(basename "$PROJECT_DIR")
+SESSION_NAME=${SESSION_NAME//./_}
+SESSION_NAME=${SESSION_NAME// /_}
 
 # If session exists, switch or attach depending on context
 if tmux has-session -t "$SESSION_NAME" 2>/dev/null; then
