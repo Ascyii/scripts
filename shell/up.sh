@@ -5,6 +5,7 @@ REPOS=(
     "/home/jonas/nixos"
     "/home/jonas/dotfiles"
     "/home/jonas/.config/nvim"
+    "/home/jonas/.config/emacs"
     "/home/jonas/projects/scripts"
     "/home/jonas/projects/university"
 )
