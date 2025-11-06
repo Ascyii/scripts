@@ -6,9 +6,11 @@ HOST=$(hostname)
 case "$HOST" in
     "minoxy")
         # Apps for workstation
-        firefox --browser &
-        sleep 2
-        hyprctl dispatch workspace 1
+        ~/projects/scripts/shell/rnote_mapper.sh
+        #sleep 1
+        #firefox &
+        #sleep 3
+        #hyprctl dispatch workspace 1
         ;;
     "thinix")
         # Apps for laptop
